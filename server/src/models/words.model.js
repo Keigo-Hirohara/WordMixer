@@ -3,13 +3,19 @@ const word = require("./words.mongo");
 const addNewWord = async (newWord) => {
   await word.findOneAndUpdate(
     {
-      _id: newWord._id
+      word: newWord.word
     },
     newWord,
     {
       upsert: true,
     }
   );
+};
+
+const randomizeWord = async () => {
+  return await word.aggregate([
+    {$sample: {size: 2}}
+  ])
 };
 
 const readWords = async () => {
@@ -31,6 +37,7 @@ const findWordByID = async (findId) => {
 
 module.exports = {
     addNewWord,
+    randomizeWord,
     readWords,
     deleteWord,
     findWordByID

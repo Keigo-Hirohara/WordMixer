@@ -2,6 +2,7 @@ const express = require('express');
 
 const {
     httpAddNewWord,
+    httpRandomizeWord,
     httpReadWords,
     httpDeleteWord
 } = require('./words.controller');
@@ -9,6 +10,8 @@ const {
 const wordsRouter = express.Router();
 
 wordsRouter.get('/', httpReadWords);
+
+wordsRouter.get('/random', httpRandomizeWord);
 
 wordsRouter.post('/', httpAddNewWord);
 

@@ -1,32 +1,25 @@
-import { useEffect, useState } from "react";
-import axios from 'axios';
+import { useEffect } from "react";
 
-const WordsList = () => {
-  const [words, setWords] = useState([]);
+const WordsList = (props) => {
 
-//   fetch(`${API_URL}/word`).then((res) => {
-//       res.json().then((data) => {
-//           const wordItems = JSON.stringify(data);
-//           setWords(wordItems);
-//       })
-//   }).catch((err) => {
-//       console.error(err);
-//   })
-
-//   const getWords = useCallback(async () => {
-//     const fetchedWords = await httpGetAllWords();
-//     setWords(fetchedWords);
-//   }, []);
+  const deleteItem = (wordId) => {
+    fetch(`http://localhost:5000/word/${wordId}`, {
+      method: 'DELETE'})
+      .then((res) => {res.json()})
+      .then(() => {props.update()})
+  }
 
   useEffect(() => {
-    axios.get('http://localhost:5000/word')
-        .then(res => {
-            console.log(Object.values(res.data[0]));
-            setWords(Object.values(res.data.Object[1]));
-        })
-  }, []);
-//   console.log(words);
-  return <ul>{words}</ul>;
+    props.update();
+    // console.log(words.length);
+  }, [props]);
+  return (
+    <ul>
+      {Object.keys(props.words).map((d, index) => {
+        return <li key={index}>{props.words[d].word}<button onClick={() => deleteItem(props.words[d]._id)}>削除</button></li>;
+      })}
+    </ul>
+  );
 };
 
 export default WordsList;

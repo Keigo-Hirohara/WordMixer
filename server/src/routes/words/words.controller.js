@@ -1,5 +1,6 @@
 const {
   addNewWord,
+  randomizeWord,
   readWords,
   deleteWord,
   findWordByID
@@ -11,6 +12,10 @@ const httpAddNewWord = (req, res) => {
   addNewWord(word);
   res.status(201).json(word);
 };
+
+const httpRandomizeWord = async (req, res) => {
+  res.status(200).json(await randomizeWord());
+}
 
 const httpReadWords = async (req, res) => {
   res.status(200).json(await readWords());
@@ -33,6 +38,7 @@ const httpDeleteWord = async (req, res) => {
 
 module.exports = {
   httpAddNewWord,
+  httpRandomizeWord,
   httpReadWords,
   httpDeleteWord,
 };
