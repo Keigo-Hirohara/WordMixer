@@ -18,7 +18,7 @@ const IdeaDetail = (props) => {
   };
 
   const handleClick = (e) => {
-    fetch(`http://localhost:5000/idea/${id.id}`, {
+    fetch(`http://localhost:5000/v1/idea/${id.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -1,9 +1,11 @@
 {
-  "name": "WordMixer",
+  "name": "word_mixer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install": "npm i --prefix client && npm i --prefix server",
+    "deploy": "npm run build --prefix client && npm start --prefix server",
     "start": "npm run start --prefix server & npm run start --prefix client",
     "test": "npm test --prefix server"
   },

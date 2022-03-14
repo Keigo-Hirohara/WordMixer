@@ -8,7 +8,7 @@ const Word = () => {
   const [words, setWords] = useState([]);
 
   const fetchWordData = () => {
-    fetch("http://localhost:5000/word")
+    fetch("http://localhost:5000/v1/word")
       .then((res) => {
         res.json().then((data) => {
           console.log(data);

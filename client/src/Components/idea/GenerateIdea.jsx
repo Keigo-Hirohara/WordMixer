@@ -25,7 +25,7 @@ const GenerateIdea = (props) => {
   };
 
   const addIdea = () => {
-    fetch("http://localhost:5000/idea", {
+    fetch("http://localhost:5000/v1/idea", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const GenerateIdea = (props) => {
   };
 
   const fetchWordData = () => {
-    fetch("http://localhost:5000/word").then(async (res) => {
+    fetch("http://localhost:5000/v1/word").then(async (res) => {
       const wordData = await res.json();
       if (wordData.length > 2) {
         setRandomAvailable(true);

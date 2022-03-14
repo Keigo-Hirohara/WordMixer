@@ -4,7 +4,7 @@ import { ListGroup, Button } from "react-bootstrap";
 
 const WordsList = (props) => {
   const deleteItem = (wordId) => {
-    fetch(`http://localhost:5000/word/${wordId}`, {
+    fetch(`http://localhost:5000/v1/word/${wordId}`, {
       method: "DELETE",
     })
       .then((res) => {

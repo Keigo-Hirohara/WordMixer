@@ -10,7 +10,7 @@ const AddForm = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    fetch("http://localhost:5000/word", {
+    fetch("http://localhost:5000/v1/word", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,18 +27,6 @@ const AddForm = (props) => {
   };
 
   return (
-    // <InputGroup className="mb-3">
-    //   <form onSubmit={handleSubmit}>
-    //     <FormControl
-    //       aria-describedby="basic-addon2"
-    //       required onChange={wordUpdate} value={word}
-    //     />
-    //     {/* <input required onChange={wordUpdate} value={word}></input> */}
-    //     <Button variant="outline-secondary" id="button-addon2" type="submit">
-    //       追加
-    //     </Button>
-    //   </form>
-    // </InputGroup>
     <form onSubmit={handleSubmit} style={{margin: '0.5rem 2rem 0 2rem'}}>
       <Form.Label htmlFor="basic-url">単語を入力して追加</Form.Label>
       <InputGroup className="mb-3">

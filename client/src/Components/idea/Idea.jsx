@@ -8,7 +8,7 @@ const Idea = () => {
   const [ideas, setIdeas] = useState([]);
 
   const fetchIdeaData = () => {
-    fetch("http://localhost:5000/idea")
+    fetch("http://localhost:5000/v1/idea")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
