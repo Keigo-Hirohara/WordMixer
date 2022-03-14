@@ -14,7 +14,7 @@ describe('Ideas API', () => {
     describe('Test GET /idea', () => {
         test('It should response with 200 success', async () => {
             const response = await request(app)
-                .get('/idea')
+                .get('/v1/idea')
                 .expect('Content-Type', /json/)
                 .expect(200);
         });
@@ -27,7 +27,7 @@ describe('Ideas API', () => {
         };
         test('It should response with 201 success', async () => {
             const response = await request(app)
-                .post('/idea')
+                .post('/v1/idea')
                 .send(completeIdeaData)
                 .expect('Content-Type', /json/)
                 .expect(201);
@@ -36,7 +36,7 @@ describe('Ideas API', () => {
 
         test('It should catch Missing required properties', async () => {
             const response = await request(app)
-                .post('/idea')
+                .post('/v1/idea')
                 .send({})
                 .expect('Content-Type', /json/)
                 .expect(400);

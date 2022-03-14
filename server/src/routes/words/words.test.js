@@ -14,7 +14,7 @@ describe("Words API", () => {
   describe("Test GET /word", () => {
     test("It should respond with 200 success", async () => {
       const response = await request(app)
-        .get("/word")
+        .get("/v1/word")
         .expect("Content-Type", /json/)
         .expect(200);
     });
@@ -27,7 +27,7 @@ describe("Words API", () => {
 
     test("It should respond with 201 success", async () => {
       const response = await request(app)
-        .post("/word")
+        .post("/v1/word")
         .send(completeWordData)
         .expect("Content-Type", /json/)
         .expect(201);
@@ -37,7 +37,7 @@ describe("Words API", () => {
 
     test("It should catch Missing required properties", async () => {
         const response = await request(app)
-            .post('/word')
+            .post('/v1/word')
             .send({})
             .expect('Content-type', /json/)
             .expect(400);
