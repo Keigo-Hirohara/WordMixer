@@ -1,32 +1,39 @@
-import {useState} from 'react';
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import IdeaList from './IdeaList';
-import GenerateIdea from './GenerateIdea';
+import IdeaList from "./IdeaList";
+import GenerateIdea from "./GenerateIdea";
 
 const Idea = () => {
-    const [ideas, setIdeas] = useState([]);
+  const [ideas, setIdeas] = useState([]);
 
-    const fetchIdeaData = (isMounted) => {
-        fetch("http://localhost:5000/idea")
-          .then((res) => {
-            res.json().then((data) => {
-                if (isMounted) {
-                    setIdeas(data);
-                }
-            });
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      };
+  const fetchIdeaData = () => {
+    fetch("http://localhost:5000/idea")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setIdeas(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
-    return (
-        <div>
-            hey ! this is a /idea route on client!
-            <GenerateIdea update={fetchIdeaData}/>
-            <IdeaList update={fetchIdeaData} ideas={ideas}/>
-        </div>
-    );
+  return (
+    <>
+    <GenerateIdea
+          update={() => {
+            fetchIdeaData();
+          }}
+        />
+      <IdeaList
+        update={() => {
+          fetchIdeaData();
+        }}
+        ideas={ideas}
+      />
+    </>
+  );
 };
 
 export default Idea;

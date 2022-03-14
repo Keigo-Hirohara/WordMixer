@@ -6,13 +6,15 @@ const getAllIdeas = async () => {
     {
       __v: 0,
     }
-  );
+  ).sort({ $natural: -1 });
 };
 
 const addNewIdea = async (newIdea) => {
     await idea.findOneAndUpdate({
         idea: newIdea.idea,
-    }, newIdea, {
+    }, {
+        $setOnInsert: newIdea
+    }, {
         upsert: true
     })
 };
@@ -25,10 +27,15 @@ const updateIdea = async (newerIdea, ideaId) => {
 }
 
 const deleteIdea = async (ideaId) => {
-    const deleteId = ideaId;
-    await idea.findOneAndDelete({
-        _id: deleteId
+    return await idea.findOneAndDelete({
+        _id: ideaId
     })
 }
 
-module.exports = {getAllIdeas, addNewIdea, updateIdea, deleteIdea};
+const existsIdeaWithId = async (ideaId) => {
+    return await idea.findOne({
+        _id: ideaId
+    }) 
+}
+
+module.exports = {getAllIdeas, addNewIdea, updateIdea, deleteIdea, existsIdeaWithId};

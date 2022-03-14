@@ -1,17 +1,17 @@
-import {useState} from "react";
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import AddForm from "./AddForm";
 import WordsList from "./WordsLlist";
 
 const Word = () => {
-
   const [words, setWords] = useState([]);
 
   const fetchWordData = () => {
-    fetch('http://localhost:5000/word')
+    fetch("http://localhost:5000/word")
       .then((res) => {
         res.json().then((data) => {
-          // console.log(data[0].word);
+          console.log(data);
           // const wordItems = JSON.stringify(data);
           setWords(data);
         });
@@ -22,11 +22,19 @@ const Word = () => {
   };
 
   return (
-      <>
-        <AddForm/>
-        <WordsList update={fetchWordData} words={words}/>
-      </>
-
+    <>
+        <AddForm
+          update={() => {
+            fetchWordData();
+          }}
+        />
+      <WordsList
+        update={() => {
+          fetchWordData();
+        }}
+        words={words}
+      />
+    </>
   );
 };
 

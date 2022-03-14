@@ -12,16 +12,10 @@ const addNewWord = async (newWord) => {
   );
 };
 
-const randomizeWord = async () => {
-  return await word.aggregate([
-    {$sample: {size: 2}}
-  ])
-};
-
 const readWords = async () => {
     return await word.find({}, {
       '__v': 0
-    });
+    }).sort({ $natural: -1 });
 }
 
 const deleteWord = async (selectedId) => {
@@ -37,7 +31,6 @@ const findWordByID = async (findId) => {
 
 module.exports = {
     addNewWord,
-    randomizeWord,
     readWords,
     deleteWord,
     findWordByID

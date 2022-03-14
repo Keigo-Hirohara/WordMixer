@@ -14,11 +14,11 @@ mongoose.connection.on('error', (err) => {
 
 const connectMongo = async () => {
     await mongoose.connect(mongoURL);
-    return mongoose;
+    // return mongoose;
 }
 
 const disconnectMongo = async () => {
-    await mongoose.disconnect(mongoURL);
+    await mongoose.disconnect();
 }
 
 module.exports = {connectMongo, disconnectMongo};
