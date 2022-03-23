@@ -23,6 +23,7 @@ const App = () => {
             .catch((err) => {
               console.log(err);
             });
+    console.log(isLoggedIn)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
