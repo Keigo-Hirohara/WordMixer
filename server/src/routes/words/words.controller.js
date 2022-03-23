@@ -7,18 +7,19 @@ const {
 
 const httpAddNewWord = async (req, res) => {
   const word = req.body;
+  console.log(`created by: ${JSON.stringify(req.user)}`);
 
   if (!word.word) {
     return res.status(400).json({
       error: "Missing required launch property",
     });
   }
-  await addNewWord(word);
+  await addNewWord(word, JSON.stringify(req.user.id));
   return res.status(201).json(word);
 };
 
 const httpReadWords = async (req, res) => {
-  res.status(200).json(await readWords());
+  res.status(200).json(await readWords(JSON.stringify(req.user.id)));
 };
 
 const httpDeleteWord = async (req, res) => {

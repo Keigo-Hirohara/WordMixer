@@ -8,6 +8,10 @@ const ideaSchema = new mongoose.Schema({
     desc: {
         type: String,
         required: true
+    },
+    userId: {
+        type: String,
+        required: true
     }
 });
 

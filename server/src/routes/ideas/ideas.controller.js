@@ -1,7 +1,7 @@
 const {getAllIdeas, addNewIdea, updateIdea, deleteIdea, existsIdeaWithId} = require('../../models/ideas.model');
 
 const httpGetAllIdeas = async (req, res) => {
-    res.status(200).json(await getAllIdeas());
+    res.status(200).json(await getAllIdeas(JSON.stringify(req.user.id)));
 }
 
 const httpAddNewIdea = async (req, res) => {
@@ -11,7 +11,7 @@ const httpAddNewIdea = async (req, res) => {
             error: 'new idea is not defined!!'
         });
     }
-    await addNewIdea(newIdea);
+    await addNewIdea(newIdea, JSON.stringify(req.user.id));
     return res.status(201).json(newIdea);
 }
 
@@ -23,7 +23,7 @@ const httpUpdateIdea =  async (req, res) => {
             error: 'error is not updated!'
         })
     }    
-    await updateIdea(newerIdea, req.params.id)
+    await updateIdea(newerIdea)
     return res.status(201).json({
         ok: true
     })

@@ -1,4 +1,5 @@
 const express = require('express');
+const { verifyJWT } = require('../users/users.controller');
 
 const {
     httpAddNewWord,
@@ -8,9 +9,9 @@ const {
 
 const wordsRouter = express.Router();
 
-wordsRouter.get('/', httpReadWords);
+wordsRouter.get('/', verifyJWT, httpReadWords);
 
-wordsRouter.post('/', httpAddNewWord);
+wordsRouter.post('/', verifyJWT, httpAddNewWord);
 
 wordsRouter.delete('/:id', httpDeleteWord);
 

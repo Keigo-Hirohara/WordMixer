@@ -1,19 +1,24 @@
 const idea = require("./ideas.mongo");
 
-const getAllIdeas = async () => {
+const getAllIdeas = async (userId) => {
   return await idea.find(
-    {},
+    {userId},
     {
       __v: 0,
     }
   ).sort({ $natural: -1 });
 };
 
-const addNewIdea = async (newIdea) => {
+const addNewIdea = async (newIdea, userId) => {
     await idea.findOneAndUpdate({
         idea: newIdea.idea,
+        userId
     }, {
-        $setOnInsert: newIdea
+        $setOnInsert: {
+            idea: newIdea.idea,
+            desc: newIdea.desc,
+            userId
+        }
     }, {
         upsert: true
     })

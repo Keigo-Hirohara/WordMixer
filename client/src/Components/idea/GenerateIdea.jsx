@@ -29,6 +29,7 @@ const GenerateIdea = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-access-token": localStorage.getItem("token")
       },
       body: JSON.stringify({
         idea: `${randomWordLeft ? randomWordLeft : "単語無し"} + ${
@@ -39,18 +40,23 @@ const GenerateIdea = (props) => {
     }).then(() => props.update());
   };
 
-  const fetchWordData = () => {
-    fetch("http://localhost:5000/v1/word").then(async (res) => {
+  useEffect(() => {
+    let cancel = false;
+    fetch("http://localhost:5000/v1/word", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    }).then(async (res) => {
       const wordData = await res.json();
       if (wordData.length > 2) {
+        if (cancel) return;
         setRandomAvailable(true);
       }
       setWords(wordData);
     });
-  };
-
-  useEffect(() => {
-    fetchWordData();
+    return () => {
+      cancel = true;
+    };
   }, []);
 
   return (
@@ -64,7 +70,7 @@ const GenerateIdea = (props) => {
               <h2 style={{ display: "inline" }}>{randomWordRight}</h2>
             </>
           ) : (
-            <Alert variant="danger">単語を3つ以上選択してください!</Alert>
+            <Alert variant="danger">単語を3つ以上設定してください!</Alert>
           )}
         </div>
 

@@ -1,20 +1,14 @@
+/**
+ * @jest-environment jsdom
+ */
 const request = require("supertest");
-const app = require("../../app");
-const { connectMongo, disconnectMongo } = require("../../services/mongo");
-
-describe("Words API", () => {
-  beforeAll(async () => {
-    await connectMongo();
-  });
-
-  afterAll(async () => {
-    await disconnectMongo();
-  });
-
+const app = require("../app");
+const wordsTest = () => {
   describe("Test GET /word", () => {
     test("It should respond with 200 success", async () => {
       const response = await request(app)
         .get("/v1/word")
+        .set('x-access-token', localStorage.getItem("token"))
         .expect("Content-Type", /json/)
         .expect(200);
     });
@@ -28,6 +22,7 @@ describe("Words API", () => {
     test("It should respond with 201 success", async () => {
       const response = await request(app)
         .post("/v1/word")
+        .set('x-access-token', localStorage.getItem("token"))
         .send(completeWordData)
         .expect("Content-Type", /json/)
         .expect(201);
@@ -36,15 +31,18 @@ describe("Words API", () => {
     });
 
     test("It should catch Missing required properties", async () => {
-        const response = await request(app)
-            .post('/v1/word')
-            .send({})
-            .expect('Content-type', /json/)
-            .expect(400);
+      const response = await request(app)
+        .post("/v1/word")
+        .set('x-access-token', localStorage.getItem("token"))
+        .send({})
+        .expect("Content-type", /json/)
+        .expect(400);
 
-        expect(response.body).toStrictEqual({
-            error: "Missing required launch property"
-        })
+      expect(response.body).toStrictEqual({
+        error: "Missing required launch property",
+      });
     });
   });
-});
+};
+
+module.exports = wordsTest;

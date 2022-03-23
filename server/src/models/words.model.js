@@ -1,19 +1,25 @@
 const word = require("./words.mongo");
 
-const addNewWord = async (newWord) => {
+const addNewWord = async (newWord, userId) => {
   await word.findOneAndUpdate(
     {
-      word: newWord.word
-    },
-    newWord,
+      word: newWord.word,
+      userId: userId
+    }, {
+      word: newWord.word,
+      userId: userId
+    }
+    ,
     {
       upsert: true,
     }
   );
 };
 
-const readWords = async () => {
-    return await word.find({}, {
+const readWords = async (userId) => {
+    return await word.find({
+      userId
+    }, {
       '__v': 0
     }).sort({ $natural: -1 });
 }
