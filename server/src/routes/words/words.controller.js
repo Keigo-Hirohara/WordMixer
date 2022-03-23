@@ -7,7 +7,6 @@ const {
 
 const httpAddNewWord = async (req, res) => {
   const word = req.body;
-  console.log(`created by: ${JSON.stringify(req.user)}`);
 
   if (!word.word) {
     return res.status(400).json({
@@ -31,7 +30,6 @@ const httpDeleteWord = async (req, res) => {
     });
   }
   const deleted = await deleteWord(selectedId);
-  console.log(deleted);
   if (!deleted) {
     res.status(400).json({
       error: 'Word not deleted'

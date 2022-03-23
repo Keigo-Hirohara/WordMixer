@@ -20,7 +20,6 @@ const AddForm = (props) => {
         word: word,
       }),
     }).then(() => {
-      console.log("you added form data!");
       setWord("");
       props.update();
     });

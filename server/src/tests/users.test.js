@@ -30,7 +30,6 @@ const usersTest = () => {
         .expect("Content-Type", /json/)
         .expect(200);
       localStorage.setItem("token", response._body.token);
-      console.log(response);
     });
   });
 };

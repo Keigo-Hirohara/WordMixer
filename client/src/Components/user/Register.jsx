@@ -42,7 +42,6 @@ const Register = () => {
   };
 
   useEffect(() => {
-    console.log("実行");
     fetch("http://localhost:5000/v1/isUserAuth", {
       headers: {
         "x-access-token": localStorage.getItem("token"),

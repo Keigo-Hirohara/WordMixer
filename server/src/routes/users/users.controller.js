@@ -58,7 +58,6 @@ const httpLoginUser = async (req, res) => {
 };
 
 const httpValidateUser = (req, res) => {
-  console.log(req.user);
   return res.json({
     isLoggedIn: true,
     username: req.user.username,
@@ -67,7 +66,6 @@ const httpValidateUser = (req, res) => {
 
 const verifyJWT = (req, res, next) => {
   const token = req.headers["x-access-token"]?.split(" ")[1];
-  console.log(token);
 
   if (token) {
     jwt.verify(token, "secret", (err, decoded) => {

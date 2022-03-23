@@ -39,7 +39,6 @@ const httpDeleteIdea = async (req, res) => {
         })
     }
     const deleted = await deleteIdea(ideaId);
-    console.log(deleted)
     if (!deleted) {
         return res.status(400).json({
             error: 'Idea not aborted'

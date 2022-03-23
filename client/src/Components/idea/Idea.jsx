@@ -17,7 +17,6 @@ const navigate = useNavigate();
       }})
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setIdeas(data);
       })
       .catch((err) => {
