@@ -40,7 +40,7 @@ const IdeaDetail = (props) => {
     console.log(location);
     setPageTitle(location.state.title);
     setDescription(location.state.description);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   // location.state.description, location.state.title
   return (
     <Card style={{ margin: "2rem" }}>
