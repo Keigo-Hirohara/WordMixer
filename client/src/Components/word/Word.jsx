@@ -12,7 +12,7 @@ const Word = () => {
 
   const fetchWordData = () => {
     // let cancel = false;
-    fetch("http://localhost:5000/v1/word", {
+    fetch("v1/word", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },
@@ -33,7 +33,7 @@ const Word = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/v1/isUserAuth", {
+    fetch("v1/isUserAuth", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },

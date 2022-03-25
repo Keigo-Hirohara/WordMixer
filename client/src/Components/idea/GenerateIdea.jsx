@@ -25,7 +25,7 @@ const GenerateIdea = (props) => {
   };
 
   const addIdea = () => {
-    fetch("http://localhost:5000/v1/idea", {
+    fetch("v1/idea", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const GenerateIdea = (props) => {
 
   useEffect(() => {
     let cancel = false;
-    fetch("http://localhost:5000/v1/word", {
+    fetch("v1/word", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },

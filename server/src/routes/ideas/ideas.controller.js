@@ -17,13 +17,13 @@ const httpAddNewIdea = async (req, res) => {
 
 const httpUpdateIdea =  async (req, res) => {
     const newerIdea = req.body;
-
+    console.log(newerIdea)
     if (!newerIdea.idea || !newerIdea.desc) {
         res.status(400).json({
             error: 'error is not updated!'
         })
     }    
-    await updateIdea(newerIdea)
+    await updateIdea(newerIdea, req.params.id)
     return res.status(201).json({
         ok: true
     })

@@ -11,7 +11,7 @@ const Navigationbar = () => {
     navigate("/login");
   };
   useEffect(() => {
-    fetch("http://localhost:5000/v1/isUserAuth", {
+    fetch("v1/isUserAuth", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },

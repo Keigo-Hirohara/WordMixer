@@ -10,7 +10,7 @@ const AddForm = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    fetch("http://localhost:5000/v1/word", {
+    fetch("v1/word", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

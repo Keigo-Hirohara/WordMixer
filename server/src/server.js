@@ -17,7 +17,7 @@ const startServer = async () => {
     await connectMongo();
 
     server.listen(PORT, () => {
-        console.log(`Listening on port: ${PORT}`);
+        console.log(`Listening on port: ${PORT} updated!`);
     });
 }
 

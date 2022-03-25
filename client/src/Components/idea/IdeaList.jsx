@@ -17,7 +17,7 @@ const IdeaList = (props) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const deleteIdea = (ideaId) => {
-    fetch(`http://localhost:5000/v1/idea/${ideaId}`, {
+    fetch(`v1/idea/${ideaId}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

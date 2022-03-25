@@ -11,7 +11,7 @@ const navigate = useNavigate();
   const [ideas, setIdeas] = useState([]);
 
   const fetchIdeaData = () => {
-    fetch("http://localhost:5000/v1/idea", {
+    fetch("v1/idea", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       }})
@@ -25,7 +25,7 @@ const navigate = useNavigate();
   };
 
   useEffect(() => {  
-    fetch("http://localhost:5000/v1/isUserAuth", {
+    fetch("v1/isUserAuth", {
             headers: {
               "x-access-token": localStorage.getItem("token"),
             },

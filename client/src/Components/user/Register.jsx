@@ -18,7 +18,7 @@ const Register = () => {
         password: form[1].value,
       };
 
-      fetch("http://localhost:5000/v1/register", {
+      fetch("v1/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/v1/isUserAuth", {
+    fetch("v1/isUserAuth", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },

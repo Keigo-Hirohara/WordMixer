@@ -18,7 +18,7 @@ const Login = () => {
         password: form[1].value,
       };
 
-      await fetch("http://localhost:5000/v1/login", {
+      await fetch("v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/v1/isUserAuth", {
+    fetch("v1/isUserAuth", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },

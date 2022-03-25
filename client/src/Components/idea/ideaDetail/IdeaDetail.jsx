@@ -14,11 +14,13 @@ const IdeaDetail = (props) => {
   const navigate = useNavigate();
 
   const textUpdate = (event) => {
+    console.log(event.target.value);
     setDescription(event.target.value);
   };
 
   const handleClick = (e) => {
-    fetch(`http://localhost:5000/v1/idea/${id.id}`, {
+    console.log(description);
+    fetch(`v1/idea/${id.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -28,15 +30,18 @@ const IdeaDetail = (props) => {
         desc: description,
       }),
     }).then(async (res) => {
+
       console.log(await res.json())
     });
     e.preventDefault();
   };
 
   useEffect(() => {
+    console.log(location);
     setPageTitle(location.state.title);
     setDescription(location.state.description);
-  }, [location.state.description, location.state.title]);
+  }, []);
+  // location.state.description, location.state.title
   return (
     <Card style={{ margin: "2rem" }}>
       <Card.Header style={{ textAlign: "center", fontSize: "1.75rem" }}>
